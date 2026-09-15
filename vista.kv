@@ -1,0 +1,72 @@
+<GestionTurnosWidget>:
+    orientation: 'vertical'
+    padding: 20
+    spacing: 15
+
+    BoxLayout:
+        size_hint_y: None
+        height: '50dp'
+        spacing: 10
+
+        TextInput:
+            id: txt_nombre
+            hint_text: 'Nombre del cliente/paciente'
+            multiline: False
+            font_size: '18sp'
+
+        Button:
+            text: 'Sacar Turno'
+            size_hint_x: 0.3
+            background_color: (0.2, 0.6, 1, 1)
+            on_press: if root.controlador: root.controlador.agregar_turno()
+
+    BoxLayout:
+        orientation: 'horizontal'
+        spacing: 20
+
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 20
+            size_hint_x: 0.4
+
+            Label:
+                text: 'ATENDIENDO AHORA'
+                font_size: '14sp'
+                color: (0.7, 0.7, 0.7, 1)
+                size_hint_y: None
+                height: '30dp'
+
+            Label:
+                id: lbl_atendiendo
+                text: '-'
+                font_size: '32sp'
+                bold: True
+                color: (0.1, 0.8, 0.1, 1)
+
+            Button:
+                text: 'Atender Siguiente'
+                size_hint_y: None
+                height: '60dp'
+                background_color: (0.9, 0.3, 0.3, 1)
+                on_press: if root.controlador: root.controlador.atender_turno()
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_x: 0.6
+
+            Label:
+                text: 'FILA DE ESPERA'
+                font_size: '14sp'
+                size_hint_y: None
+                height: '30dp'
+
+            ScrollView:
+                Label:
+                    id: lbl_lista_espera
+                    text: 'No hay turnos en espera'
+                    font_size: '18sp'
+                    halign: 'left'
+                    valign: 'top'
+                    text_size: self.width, None
+                    size_hint_y: None
+                    height: self.texture_size[1]
